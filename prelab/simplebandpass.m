@@ -15,7 +15,6 @@ max_value = max(abs(HH)); % get the highest peak value of the frequency response
 bb2 = 1 / max_value * bb; % normalize the coefficients
 HH2 = freqz(bb2,1,ww);
 
-
 subplot(212)
 plot(ww, abs(HH2))
 title('Normalized Frequency Response')
