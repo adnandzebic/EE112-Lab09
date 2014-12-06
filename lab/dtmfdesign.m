@@ -16,10 +16,10 @@ ww = 0:pi/10000:pi;
 % This loop will calculate the normalized freq response for all fb
 for ii = 1:length(fb)
     bb = cos(2 * pi * fb(ii) * (0:L-1) / fs); % Coefficients
-    HH = freqz(bb, 1, ww); % Calculate the frequency response
+    HH = freqz(bb, 1, ww); % Calculate the impulse response
     max_value = max(abs(HH)); % Get the max value of response
     BB(ii) = 1 / max_value; % Insert into BB for scaling
 
-    HH2 = bb * BB(ii); % Scale the frequency response to one
-    hh(:, ii) = HH2; % Store normalized freq response into hh matrix
+    HH2 = bb * BB(ii); % Scale the impulse response to one
+    hh(:, ii) = HH2; % Store normalized impulse response into hh matrix
 end
