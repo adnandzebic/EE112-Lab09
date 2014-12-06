@@ -30,5 +30,3 @@ samp_rate = 8000; % 8000Hz
 lower_analog = lower_freq * 8000 / (2 * pi); % 736 Hz
 upper_analog = upper_freq * 8000 / (2 * pi); % 868 Hz
 
-
-
