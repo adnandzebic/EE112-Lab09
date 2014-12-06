@@ -18,21 +18,20 @@ hh = dtmfdesign(center_freqz, L, fs);
 %
 [nstart, nstop] = dtmfcut(xx, fs); %<-- Find the beginning and end of tone bursts
 keys = [];
-p = zeros(1,8); % store the score values
+score = zeros(1,8); % store the score values
 for kk=1:length(nstart)
     x_seg = xx(nstart(kk):nstop(kk)); %<-- Extract one DTMF tone
 
     for ii = 1:8
-        p(ii) = dtmfscore(x_seg, hh(:, ii)); % Get score
+        score(ii) = dtmfscore(x_seg, hh(:, ii)); % Get score
     end
-    num_freq = find(p==1);
 
-    if length(num_freq)>2 % More than 2 frequencies shouldn't be scored
+    if length(find(score == 1)) > 2 % More than 2 frequencies shouldn't be scored
         keys = [keys, 'Error: There were more than 2 frequencies scored'];
     else
-        row_index = find(p(1:4) == 1);
-        col_index = find(p(5:8) == 1);
-        keys = [keys, dtmf.keys(row_index, col_index)];
+        ii = find(score(1:4) == 1);
+        jj = find(score(5:8) == 1);
+        keys = [keys, dtmf.keys(ii, jj)];
     end
 end
 end
